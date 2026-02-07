@@ -195,7 +195,7 @@ const App: React.FC = () => {
             {/* 结果卡片大图 */}
             <div className="w-full relative mb-6 border-2 border-black rounded-lg overflow-hidden flex items-center justify-center bg-gray-50">
               <img
-                src={`${import.meta.env.BASE_URL}${result.image.replace(/^\.?\//, '')}`}
+                src={`/2026horse/${result.image}`}
                 alt={result.name}
                 className="w-full h-auto block select-none"
                 onError={(e) => {
