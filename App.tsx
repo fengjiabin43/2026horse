@@ -31,7 +31,7 @@ const App: React.FC = () => {
 
   const calculateResult = (finalAnswers: Option[]) => {
     setStatus(AppStatus.LOADING);
-    
+
     // 计算总分
     const totalScores: Weights = finalAnswers.reduce((acc, opt) => ({
       energy: acc.energy + (opt.weights.energy || 0),
@@ -82,7 +82,7 @@ const App: React.FC = () => {
     if (navigator.share) {
       try {
         await navigator.share(shareData);
-      } catch (err) {}
+      } catch (err) { }
     } else {
       try {
         await navigator.clipboard.writeText(window.location.href);
@@ -102,7 +102,7 @@ const App: React.FC = () => {
 
   const ProgressBar = () => (
     <div className="w-full h-2 bg-gray-200 rounded-full mb-4 overflow-hidden border border-black/10">
-      <div 
+      <div
         className="h-full bg-yellow-400 transition-all duration-300 ease-out"
         style={{ width: `${((currentQuestionIdx + 1) / QUESTIONS.length) * 100}%` }}
       />
@@ -114,11 +114,11 @@ const App: React.FC = () => {
       {status === AppStatus.START && (
         <div className="text-center animate-fade-in w-full">
           <h1 className="text-4xl font-bold mb-10 retro-font text-gray-800 tracking-tight leading-tight">
-            2026<br/>测测你是什么马
+            2026<br />测测你是什么马
           </h1>
           <div className="relative inline-block group">
             <div className="absolute -inset-1 bg-yellow-400 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-            <button 
+            <button
               onClick={startQuiz}
               className="relative px-12 py-4 bg-yellow-400 border-2 border-black text-black font-bold text-xl rounded-lg hover:bg-yellow-300 active:scale-95 transition-all shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
             >
@@ -138,7 +138,7 @@ const App: React.FC = () => {
 
           <div className="flex items-center justify-between mb-2">
             {/* 恢复上一题按钮 */}
-            <button 
+            <button
               onClick={handlePrevClick}
               disabled={currentQuestionIdx === 0}
               className={`flex items-center gap-1 text-xs font-bold transition-opacity ${currentQuestionIdx === 0 ? 'opacity-0 pointer-events-none' : 'opacity-60 hover:opacity-100'}`}
@@ -194,14 +194,14 @@ const App: React.FC = () => {
           <div className="bg-white p-4 border-4 border-black rounded-2xl shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex flex-col items-center">
             {/* 结果卡片大图 */}
             <div className="w-full relative mb-6 border-2 border-black rounded-lg overflow-hidden flex items-center justify-center bg-gray-50">
-               <img 
-                 src={result.image} 
-                 alt={result.name}
-                 className="w-full h-auto block select-none"
-                 onError={(e) => {
-                    (e.target as HTMLImageElement).src = `https://picsum.photos/seed/${result.name}/600/600`;
-                 }}
-               />
+              <img
+                src={`${import.meta.env.BASE_URL}${result.image.replace(/^\.?\//, '')}`}
+                alt={result.name}
+                className="w-full h-auto block select-none"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = `https://picsum.photos/seed/${result.name}/600/600`;
+                }}
+              />
             </div>
 
             {/* 马年祝福语板块 */}
@@ -216,7 +216,7 @@ const App: React.FC = () => {
 
             {/* 重新测算按钮 */}
             <div className="w-full bg-gray-900 p-1 rounded-xl shadow-[0_4px_0_0_rgba(0,0,0,0.3)]">
-              <button 
+              <button
                 onClick={reset}
                 className="w-full py-4 bg-gray-800 text-white font-bold text-lg rounded-lg hover:bg-gray-700 active:translate-y-[2px] active:shadow-none transition-all border-b-4 border-black"
               >
@@ -224,15 +224,15 @@ const App: React.FC = () => {
               </button>
             </div>
           </div>
-          
+
           <div className="mt-8 flex justify-center gap-4">
-            <button 
+            <button
               onClick={handleSave}
               className="px-10 py-3 bg-black text-white rounded-full text-sm font-bold shadow-lg active:scale-95 transition-all"
             >
               保存
             </button>
-            <button 
+            <button
               onClick={handleShare}
               className="px-10 py-3 bg-black text-white rounded-full text-sm font-bold shadow-lg active:scale-95 transition-all"
             >
